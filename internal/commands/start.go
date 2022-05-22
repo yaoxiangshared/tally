@@ -8,6 +8,9 @@ import (
 	"githup.com/tally/internal/event"
 	"githup.com/tally/internal/server"
 	"githup.com/tally/internal/service"
+	"os"
+	"os/signal"
+	"syscall"
 )
 
 // StartCommand registers the start cli command.
@@ -23,10 +26,15 @@ var log = event.Log
 func startAction(ctx *cli.Context) error {
 	fmt.Println(ctx.String("lang"))
 	fmt.Println("start web!")
-	conf :=config.NewConfig(ctx)
+	conf := config.NewConfig(ctx)
 	service.SetConfig(conf)
 	cctx, cancel := context.WithCancel(context.Background())
 	go server.Start(cctx, conf)
+
+	quit := make(chan os.Signal)
+	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
+
+	<-quit
 	log.Info("shutting down...")
 	//conf.Shutdown()
 	cancel()

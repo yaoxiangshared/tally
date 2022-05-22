@@ -4,7 +4,7 @@ go 1.15
 
 require (
 	github.com/dustin/go-humanize v1.0.0
-	github.com/gin-gonic/gin v1.7.4 // indirect
+	github.com/gin-gonic/gin v1.7.4
 	github.com/jinzhu/gorm v1.9.16
 	github.com/klauspost/cpuid/v2 v2.0.9
 	github.com/leandro-lugaresi/hub v1.1.1

@@ -10,10 +10,8 @@ import (
 	"githup.com/tally/internal/config"
 	"githup.com/tally/internal/event"
 	//"net/http"
-
 	//"github.com/gin-contrib/gzip"
 	//"github.com/gin-gonic/gin"
-
 )
 
 var log = event.Log
@@ -36,7 +34,7 @@ func Start(ctx context.Context, conf *config.Config) {
 
 	// Create router and add routing middleware.
 	router := gin.New()
-	//router.Use(Logger(), Recovery())
+	router.Use(Logger(), Recovery())
 
 	// Enable http compression (if any).
 	//switch conf.HttpCompression() {
