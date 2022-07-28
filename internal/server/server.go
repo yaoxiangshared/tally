@@ -18,6 +18,7 @@ var log = event.Log
 
 // Start the REST API server using the configuration provided
 func Start(ctx context.Context, conf *config.Config) {
+	//fmt.Printf("%#v\n",conf)
 	defer func() {
 		if err := recover(); err != nil {
 			log.Error(err)

@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"github.com/urfave/cli/v2"
@@ -123,16 +124,15 @@ type Options struct {
 //    any previous options giving an option two override file configs through the CLI.
 func NewOptions(ctx *cli.Context) *Options {
 	c := &Options{}
-
+	//fmt.Printf("%#v\n", ctx)
 	if ctx == nil {
 		return c
 	}
 
+	fmt.Printf("%v\n", ctx.App.Name)
 	c.Name = ctx.App.Name
 	c.Copyright = ctx.App.Copyright
 	c.Version = ctx.App.Version
 
-
 	return c
 }
-

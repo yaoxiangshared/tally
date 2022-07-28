@@ -12,6 +12,7 @@ func registerRoutes(router *gin.Engine, conf *config.Config) {
 	{
 		// Config options.
 		api.GetData(v1)
+		api.GetUserInfo(v1)
 
 	}
 }
