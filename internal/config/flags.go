@@ -15,17 +15,17 @@ var GlobalFlags = []cli.Flag{
 	},
 	&cli.StringFlag{
 		Name:  "mysql_host",
-		Value: "aaa",
+		Value: "newskydb.mysql.rds.aliyuncs.com",
 		Usage: "password",
 	},
-	&cli.IntFlag{
-		Name:  "pass",
-		Value: 20,
+	&cli.StringFlag{
+		Name:  "mysql_password",
+		Value: "A60e316b7b85f1850",
 		Usage: "password",
 	},
-	&cli.IntFlag{
-		Name:  "pass",
-		Value: 20,
+	&cli.StringFlag{
+		Name:  "mysql_user",
+		Value: "tally_rw",
 		Usage: "password",
 	},
 }
