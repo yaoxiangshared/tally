@@ -1,31 +1,44 @@
 package config
 
-import "github.com/urfave/cli/v2"
+import (
+	"github.com/urfave/cli/v2"
+	"github.com/urfave/cli/v2/altsrc"
+)
 
 var GlobalFlags = []cli.Flag{
-	&cli.StringFlag{
+	altsrc.NewStringFlag(&cli.StringFlag{
 		Name:  "lang",
 		Value: "english",
 		Usage: "language for the greeting",
-	},
-	&cli.IntFlag{
+	}),
+	altsrc.NewIntFlag(&cli.IntFlag{
 		Name:  "pass",
 		Value: 20,
 		Usage: "password",
-	},
-	&cli.StringFlag{
+	}),
+	altsrc.NewStringFlag(&cli.StringFlag{
 		Name:  "mysql_host",
-		Value: "newskydb.mysql.rds.aliyuncs.com",
+		Value: "aaaa",
 		Usage: "password",
-	},
-	&cli.StringFlag{
+	}),
+	altsrc.NewStringFlag(&cli.StringFlag{
 		Name:  "mysql_password",
-		Value: "A60e316b7b85f1850",
+		Value: "bbb",
 		Usage: "password",
+	}),
+	altsrc.NewStringFlag(&cli.StringFlag{
+		Name:  "mysql_user",
+		Value: "aaa",
+		Usage: "password",
+	}),
+	&cli.StringFlag{
+		Name: "load",
 	},
 	&cli.StringFlag{
-		Name:  "mysql_user",
-		Value: "tally_rw",
-		Usage: "password",
+		Name: "setting",
 	},
+	altsrc.NewIntFlag(&cli.IntFlag{
+		Name:  "test",
+		Value: 1,
+	}),
 }

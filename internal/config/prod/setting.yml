@@ -1,0 +1,4 @@
+mysql_host: newskydb.mysql.rds.aliyuncs.com
+mysql_password: A60e316b7b85f1850
+mysql_user: tally_rw
+test: 2222
