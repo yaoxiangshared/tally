@@ -29,7 +29,10 @@ func NewConfig(ctx *cli.Context) *Config {
 		options: NewOptions(ctx),
 		//token:   rnd.Token(8),
 	}
-	configFile := ctx.String("config_path")
+	configFile, err := configFile(ctx)
+	if err != nil {
+		fmt.Println(err)
+	}
 	fmt.Println(configFile)
 	if err := c.options.Load(configFile); err != nil {
 		log.Warnf("config: %s", err)
@@ -53,6 +56,15 @@ func initLogger(debug bool) {
 			log.SetLevel(logrus.InfoLevel)
 		}
 	})
+}
+
+func configFile(ctx *cli.Context) (string, error) {
+	path := ctx.String("config_path")
+	if path == "" {
+		return path, fmt.Errorf("config path is empty")
+	}
+	return path, nil
+
 }
 
 // Init creates directories, parses additional config files, opens a database connection and initializes dependencies.

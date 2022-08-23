@@ -14,7 +14,7 @@ var GlobalFlags = []cli.Flag{
 
 	altsrc.NewStringFlag(&cli.StringFlag{
 		Name:  "config_path",
-		Value: "-",
+		Value: "",
 		Usage: "配置文件",
 	}),
 	//altsrc.NewIntFlag(&cli.IntFlag{
