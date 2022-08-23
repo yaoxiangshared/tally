@@ -3,6 +3,7 @@ package commands
 import (
 	"fmt"
 	"github.com/urfave/cli/v2"
+	"githup.com/tally/internal/config"
 	"githup.com/tally/internal/event"
 )
 
@@ -24,7 +25,18 @@ func startAction(ctx *cli.Context) error {
 	fmt.Println(ctx.String("lang"))
 	fmt.Println(ctx.Int("test"))
 	fmt.Println("start web!")
-	//conf := config.NewConfig(ctx)
+	conf := config.NewConfig(ctx)
+
+	if conf.HttpPort() < 1 || conf.HttpPort() > 65535 {
+		log.Fatal("server port must be a number between 1 and 65535")
+	}
+
+	// pass this context down the chain
+	//cctx, cancel := context.WithCancel(context.Background())
+
+	//if err := conf.Init(); err != nil {
+	//	log.Fatal(err)
+	//}
 	//service.SetConfig(conf)
 	//cctx, cancel := context.WithCancel(context.Background())
 	//go server.Start(cctx, conf)

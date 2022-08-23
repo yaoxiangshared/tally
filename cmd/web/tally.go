@@ -15,7 +15,7 @@ func main() {
 	app.Flags = config.GlobalFlags
 
 	app.Before = altsrc.InitInputSourceWithContext(config.GlobalFlags, altsrc.NewYamlSourceFromFlagFunc("setting"))
-	app.Flags = config.GlobalFlags
+	//app.Flags = config.GlobalFlags
 	app.Commands = []*cli.Command{
 		&commands.StartCommand,
 	}

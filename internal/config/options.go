@@ -5,6 +5,8 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"github.com/urfave/cli/v2"
+	"gopkg.in/yaml.v2"
+	"io/ioutil"
 )
 
 // Database drivers (sql dialects).
@@ -135,4 +137,21 @@ func NewOptions(ctx *cli.Context) *Options {
 	c.Version = ctx.App.Version
 
 	return c
+}
+func (c *Options) Load(fileName string) error {
+	if fileName == "" {
+		return nil
+	}
+
+	//if !fs.FileExists(fileName) {
+	//	return errors.New(fmt.Sprintf("config: %s not found", fileName))
+	//}
+
+	yamlConfig, err := ioutil.ReadFile(fileName)
+
+	if err != nil {
+		return err
+	}
+
+	return yaml.Unmarshal(yamlConfig, c)
 }
