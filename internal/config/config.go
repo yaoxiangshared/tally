@@ -29,12 +29,13 @@ func NewConfig(ctx *cli.Context) *Config {
 		options: NewOptions(ctx),
 		//token:   rnd.Token(8),
 	}
-	configFile, err := configFile(ctx)
+	var err error
+	configFilePath, err := configFile(ctx)
 	if err != nil {
 		fmt.Println(err)
 	}
 	fmt.Println(configFile)
-	if err := c.options.Load(configFile); err != nil {
+	if err = c.options.Load(configFilePath); err != nil {
 		log.Warnf("config: %s", err)
 	} else {
 		log.Debugf("config: options loaded from %s", err)
