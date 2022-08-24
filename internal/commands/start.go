@@ -34,9 +34,9 @@ func startAction(ctx *cli.Context) error {
 	// pass this context down the chain
 	//cctx, cancel := context.WithCancel(context.Background())
 
-	//if err := conf.Init(); err != nil {
-	//	log.Fatal(err)
-	//}
+	if err := conf.Init(); err != nil {
+		log.Fatal(err)
+	}
 	//service.SetConfig(conf)
 	//cctx, cancel := context.WithCancel(context.Background())
 	//go server.Start(cctx, conf)

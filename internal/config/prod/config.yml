@@ -10,6 +10,6 @@ HttpMode: release
 HttpPort: 81
 HttpPassword:
 DatabaseDriver: mysql
-DatabaseDsn: tally_rw:A60e316b7b85f1850@tcp(newskydb.mysql.rds.aliyuncs.com:3306)/tally?charset=utf8mb4&parseTime=True&loc=Loca
+DatabaseDsn: tally_rw:A60e316b7b85f1850@tcp(newskydb.mysql.rds.aliyuncs.com:3306)/tally?charset=utf8mb4&parseTime=True&loc=Local
 Theme: lavendel
 Language: english

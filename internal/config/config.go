@@ -2,10 +2,10 @@ package config
 
 import (
 	"fmt"
-	"github.com/jinzhu/gorm"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli/v2"
 	"githup.com/tally/internal/event"
+	"gorm.io/gorm"
 	"sync"
 )
 

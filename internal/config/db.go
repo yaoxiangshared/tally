@@ -4,16 +4,14 @@ import (
 	"errors"
 	"fmt"
 	"githup.com/tally/internal/mutex"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 	"io/ioutil"
 	"regexp"
 	"runtime"
 	"strconv"
 	"strings"
 	"time"
-
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
-	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	//"github.com/photoprism/photoprism/internal/entity"
 	//"github.com/photoprism/photoprism/internal/mutex"
 )
@@ -208,17 +206,17 @@ func (c *Config) Db() *gorm.DB {
 }
 
 // CloseDb closes the db connection (if any).
-func (c *Config) CloseDb() error {
-	if c.db != nil {
-		if err := c.db.Close(); err == nil {
-			c.db = nil
-		} else {
-			return err
-		}
-	}
-
-	return nil
-}
+//func (c *Config) CloseDb() error {
+//	if c.db != nil {
+//		if err := c.db.; err == nil {
+//			c.db = nil
+//		} else {
+//			return err
+//		}
+//	}
+//
+//	return nil
+//}
 
 // SetDbOptions sets the database collation to unicode if supported.
 func (c *Config) SetDbOptions() {
@@ -270,10 +268,10 @@ func (c *Config) connectDb() error {
 		return errors.New("config: database DSN not specified")
 	}
 
-	db, err := gorm.Open(dbDriver, dbDsn)
+	db, err := gorm.Open(mysql.Open(dbDsn), &gorm.Config{})
 	if err != nil || db == nil {
 		for i := 1; i <= 12; i++ {
-			db, err = gorm.Open(dbDriver, dbDsn)
+			db, err = gorm.Open(mysql.Open(dbDsn), &gorm.Config{})
 
 			if db != nil && err == nil {
 				break
@@ -287,12 +285,12 @@ func (c *Config) connectDb() error {
 		}
 	}
 
-	db.LogMode(false)
-	db.SetLogger(log)
-
-	db.DB().SetMaxOpenConns(c.DatabaseConns())
-	db.DB().SetMaxIdleConns(c.DatabaseConnsIdle())
-	db.DB().SetConnMaxLifetime(10 * time.Minute)
+	//db.LogMode(false)
+	//db.SetLogger(log)
+	//
+	//db.DB().SetMaxOpenConns(c.DatabaseConns())
+	//db.DB().SetMaxIdleConns(c.DatabaseConnsIdle())
+	//db.DB().SetConnMaxLifetime(10 * time.Minute)
 
 	c.db = db
 
