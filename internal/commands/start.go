@@ -1,10 +1,16 @@
 package commands
 
 import (
+	"context"
 	"fmt"
 	"github.com/urfave/cli/v2"
 	"githup.com/tally/internal/config"
 	"githup.com/tally/internal/event"
+	"githup.com/tally/internal/server"
+	"githup.com/tally/internal/service"
+	"os"
+	"os/signal"
+	"syscall"
 )
 
 // StartCommand registers the start cli command.
@@ -37,17 +43,17 @@ func startAction(ctx *cli.Context) error {
 	if err := conf.Init(); err != nil {
 		log.Fatal(err)
 	}
-	//service.SetConfig(conf)
-	//cctx, cancel := context.WithCancel(context.Background())
-	//go server.Start(cctx, conf)
-	//
-	//quit := make(chan os.Signal)
-	//signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
-	//
-	//<-quit
-	//log.Info("shutting down...")
-	////conf.Shutdown()
-	//cancel()
+	service.SetConfig(conf)
+	cctx, cancel := context.WithCancel(context.Background())
+	go server.Start(cctx, conf)
+
+	quit := make(chan os.Signal)
+	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
+
+	<-quit
+	log.Info("shutting down...")
+	//conf.Shutdown()
+	cancel()
 
 	return nil
 }
