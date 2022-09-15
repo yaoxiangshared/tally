@@ -6,15 +6,19 @@ import (
 	"gorm.io/gorm"
 )
 
-type userServant struct {
-	db *gorm.DB
+type UserServant struct {
+	Db *gorm.DB
 }
 
-func (d *userServant) CreateUser() {
+func (d *UserServant) CreateUser() {
 	fmt.Println("method:CreateUser")
 }
 
-func (d *userServant) GetUser(serId int64) (*modal.TallyUsers, error) {
+func (d *UserServant) GetUser(serId int64) (*modal.TallyUsers, error) {
 	fmt.Println("method:GetUser")
-	return (&modal.TallyUsers{}), nil
+	//return (&modal.TallyUsers{}), nil
+	user := modal.TallyUsers{}
+	result := d.Db.First(&user)
+	fmt.Println(result.RowsAffected)
+	return &user, nil
 }

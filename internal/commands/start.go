@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/urfave/cli/v2"
 	"githup.com/tally/internal/config"
+	"githup.com/tally/internal/core"
 	"githup.com/tally/internal/event"
 	"githup.com/tally/internal/server"
 	"githup.com/tally/internal/service"
@@ -43,7 +44,14 @@ func startAction(ctx *cli.Context) error {
 	if err := conf.Init(); err != nil {
 		log.Fatal(err)
 	}
+	dbMysql := &core.DbMySql{}
+	dbMysql.SetDb(conf.Db())
+	core.SetDbProvider(dbMysql)
 	service.SetConfig(conf)
+
+	//userServant := service.UserServant{Db:conf.Db()}
+	//user, _ := userServant.GetUser(1)
+	//fmt.Println( (*user).Name)
 	cctx, cancel := context.WithCancel(context.Background())
 	go server.Start(cctx, conf)
 
