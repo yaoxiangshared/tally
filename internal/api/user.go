@@ -13,9 +13,10 @@ func GetUserInfo(router *gin.RouterGroup) {
 		fmt.Println(222)
 		userServant := service.UserServant{Db: core.GetDbProvider().Db()}
 		user, _ := userServant.GetUser(1)
-		fmt.Println((*user).Name)
+		fmt.Printf("%#v\n", user)
+		fmt.Println((user).Name)
 		fmt.Println(111)
-		c.JSON(http.StatusOK, 2)
+		c.JSON(http.StatusOK, user)
 
 	})
 }

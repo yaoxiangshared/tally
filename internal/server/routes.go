@@ -8,11 +8,11 @@ import (
 
 func registerRoutes(router *gin.Engine, conf *config.Config) {
 
-	v1 := router.Group("")
+	user := router.Group("user")
 	{
 		// Config options.
-		api.GetData(v1)
-		api.GetUserInfo(v1)
+		api.GetUserInfo(user)
 
 	}
+
 }
