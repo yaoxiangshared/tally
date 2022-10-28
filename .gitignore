@@ -1,2 +1,3 @@
 .idea/
 /tally
+/internal/config/prod/config.yml
