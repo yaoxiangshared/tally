@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/urfave/cli/v2"
 	"github.com/urfave/cli/v2/altsrc"
 	"githup.com/tally/internal/commands"
@@ -10,6 +11,10 @@ import (
 )
 
 func main() {
+
+	type Rope string
+	var a Rope = "aaa"
+	fmt.Printf("Rope is %s\n", a)
 	app := cli.NewApp()
 	app.Version = "develop"
 	app.Flags = config.GlobalFlags

@@ -1,0 +1,1 @@
+./tally --lang aaa --setting ./internal/config/prod/setting.yml start

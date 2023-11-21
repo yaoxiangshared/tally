@@ -29,13 +29,23 @@ func startAction(ctx *cli.Context) error {
 	//c, err2 := ioutil.ReadFile("./cmd/web/load.yml")
 	//fmt.Println(err2)
 	//fmt.Println(string(c))
+	a := "asSASA ddd dsjkdsjs dk"
+	fmt.Println(len(a))
+	b := "asSASA ddd dsjkdsjsこん dk"
+	fmt.Println(len(b))
 	fmt.Println(ctx.String("lang"))
 	fmt.Println(ctx.Int("test"))
 	fmt.Println("start web!")
+
+	s := make([]int, 10)
+	s1 := s[5:6]
+	fmt.Println(len(s1))
+
+	return nil
 	conf := config.NewConfig(ctx)
 
 	if conf.HttpPort() < 1 || conf.HttpPort() > 65535 {
-		log.Fatal("server port must be a number between 1 and 65535")
+		log.Fatal("server pojrt must be a number between 1 and 65535")
 	}
 
 	// pass this context down the chain
