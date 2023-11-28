@@ -2,15 +2,48 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"strconv"
 	"sync"
 	"time"
 )
 
 func main() {
-	//demo1()
-	//demo2()
-	demo3()
+
+	args := os.Args
+	a, _ := strconv.ParseInt(args[1], 10, 32)
+	switch a {
+	case 0:
+		{
+			demo0()
+			break
+		}
+	case 1:
+		{
+			demo1()
+			break
+		}
+	case 2:
+		{
+			demo2()
+			break
+		}
+	case 3:
+		{
+			demo3()
+			break
+		}
+	}
 	time.Sleep(2 * time.Second)
+}
+
+func demo0() {
+	salutation := "hello"
+	go func() {
+		salutation = "welcome"
+	}()
+	time.Sleep(1 * time.Second)
+	fmt.Println(salutation)
 }
 
 func demo1() {
@@ -26,14 +59,10 @@ func demo1() {
 }
 
 func demo2() {
-	//var wg sync.WaitGroup
 	for _, salutation := range []string{"hello", "greetings", "good day"} {
-		//wg.Add(1)
 		go func() {
-			//defer wg.Done()
 			fmt.Println(salutation)
 		}()
-		//wg.Wait()
 	}
 }
 
