@@ -38,10 +38,10 @@ func main() {
 	wg.Add(10)
 	beginTestTime := time.Now()
 	for i := 0; i < 10; i++ {
-		go func() {
+		go func(index int) {
 			defer wg.Done()
-			fmt.Println(Icon("clubs.png"))
-		}()
+			fmt.Printf("gorountines %d:%s", index, Icon("clubs.png")+"\n")
+		}(i)
 	}
 	wg.Wait()
 	duration := time.Since(beginTestTime)

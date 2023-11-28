@@ -36,10 +36,11 @@ func main() {
 	var wg sync.WaitGroup
 	wg.Add(100)
 	for i := 0; i < 100; i++ {
-		go func() {
+		index := i
+		go func(index int) {
 			defer wg.Done()
-			fmt.Println(Icon("clubs.png"))
-		}()
+			fmt.Printf("gorountines %d:%s", index, Icon("clubs.png")+"\n")
+		}(index)
 	}
 	wg.Wait()
 	fmt.Println("complete")
