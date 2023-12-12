@@ -43,6 +43,7 @@ func main() {
 
 	// Bob:
 	wg.Add(1)
+
 	go func() {
 		defer wg.Done()
 		Deposit(100)
